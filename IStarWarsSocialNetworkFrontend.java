@@ -26,18 +26,18 @@ public interface IStarWarsSocialNetworkFrontend {
 	public void loadWordsWithPrefixInDropdown(ListView<String> dropdown, String prefix);
 
 	/**
-	 * Displays a message with the number of paths and length of the paths in the
-	 * window.
+	 * Displays a message with the number of paths and length of the paths between 2
+	 * characters in the given text box.
 	 */
-	public void displayMessage(int numPaths, int pathLength, Text text);
+	public void displayMessage(int numPaths, int pathLength, Text text, String char1, String char2);
 
 	/**
-	 * Displays the provided path
+	 * Displays the provided path in the give wrapper
 	 */
 	public void displayPath(List<String> path, FlowPane pathsWrapper);
 
 	/**
-	 * Removes all currently displayed paths from the screen
+	 * Removes all currently displayed paths from the given wrapper
 	 */
 	public void clearPaths(FlowPane pathsWrapper);
 }
