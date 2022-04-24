@@ -7,7 +7,7 @@
 
 import java.util.List;
 
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Text;
 
@@ -23,7 +23,7 @@ public interface IStarWarsSocialNetworkFrontend {
 	/**
 	 * Sets the specified dropdown to contain a list of words with the given prefix
 	 */
-	public void loadWordsWithPrefixInDropdown(ChoiceBox<String> dropdown, String prefix);
+	public void loadWordsWithPrefixInDropdown(ListView<String> dropdown, String prefix);
 
 	/**
 	 * Displays a message with the number of paths and length of the paths in the
