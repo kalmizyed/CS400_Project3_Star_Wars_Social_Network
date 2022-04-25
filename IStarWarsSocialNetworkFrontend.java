@@ -26,10 +26,10 @@ public interface IStarWarsSocialNetworkFrontend {
 	public void loadWordsWithPrefixInDropdown(ListView<String> dropdown, String prefix);
 
 	/**
-	 * Displays a message with the number of paths and length of the paths between 2
-	 * characters in the given text box.
+	 * Displays a message with the number of paths and degrees of separation between
+	 * 2 characters in the given text box.
 	 */
-	public void displayMessage(int numPaths, int pathLength, Text text, String char1, String char2);
+	public void displayMessage(int numPaths, int degrees, Text text, String char1, String char2);
 
 	/**
 	 * Displays the provided path in the give wrapper
