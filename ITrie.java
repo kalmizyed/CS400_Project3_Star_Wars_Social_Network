@@ -11,7 +11,7 @@ public interface ITrie {
     /**
      * Adds a word to the trie.
      */
-    public boolean add(String word);
+    public void add(String word);
    
     /**
      * Returns a list of all words.
