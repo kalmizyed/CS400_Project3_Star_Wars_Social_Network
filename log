@@ -1,0 +1,58 @@
+Script started on Mon Apr 25 13:28:27 2022
+[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jjackblake@Jacks-MacBook-Pro java % [K[?2004h[7mgit status[27m[10D[27mg[27mi[27mt[27m [27ms[27mt[27ma[27mt[27mu[27ms[?2004l
+On branch FrontendDeveloper
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mlog[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jjackblake@Jacks-MacBook-Pro java % [K[?2004h[7mgit log -1[27m[10D[27mg[27mi[27mt[27m [27ml[27mo[27mg[27m [27m-[27m1[?2004l
+[?1h=[33mcommit 71775272297b0b86435876a52c6a0cab41121a63[m[33m ([m[1;36mHEAD -> [m[1;32mFrontendDeveloper[m[33m)[m[m
+Author: Jack Blake <jhblake2@wisc.edu>[m
+Date:   Mon Apr 25 13:28:02 2022 -0500[m
+[m
+    added lib folder with JavaFX and JUnit5, added FrontendDeveloperTests, StarWarsSocialNetworkBackendPlaceholder, and St[m
+    arWarsSocialNetworkFrontend classes, added bg.jpg[m
+[K[?1l>[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jjackblake@Jacks-MacBook-Pro java % [K[?2004h[7mmake clean[27m[10D[27mm[27ma[27mk[27me[27m [27mc[27ml[27me[27ma[27mn[?2004l
+rm *.class
+[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jjackblake@Jacks-MacBook-Pro java % [K[?2004h[7mls[27m[27ml[27ms[?2004l
+ExtendedGraphADT.java				IStarWarsSocialNetworkFrontend.java		bg.jpg
+FrontendDeveloperTests.java			ITrie.java					data
+GraphADT.java					Makefile					lib
+IGraphBuilder.java				StarWarsSocialNetworkBackendPlaceholder.java	log
+IStarWarsSocialNetworkBackend.java		StarWarsSocialNetworkFrontend.java
+[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jjackblake@Jacks-MacBook-Pro java % [K[?2004h[7mmake runTests[27m[13D[27mm[27ma[27mk[27me[27m [27mr[27mu[27mn[27mT[27me[27ms[27mt[27ms[?2004l
+javac StarWarsSocialNetworkBackendPlaceholder.java
+javac --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontend.java
+javac --module-path ./lib --add-modules javafx.controls  -cp .:./lib/junit5.jar FrontendDeveloperTests.java
+java --module-path ./lib --add-modules javafx.controls -jar ./lib/junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mFrontendDeveloperTests[0m [32m✔[0m
+[36m│     ├─[0m [34mtestGetDegreesOfSeparation()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestClearPaths()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestLoadWordsWithPrefixInDropdown()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestDisplayPath()[0m [32m✔[0m
+[36m│     └─[0m [34mtestDisplayMessage()[0m [32m✔[0m
+[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
+
+Test run finished after 733 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         5 tests found           ]
+[         0 tests skipped         ]
+[         5 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         0 tests failed          ]
+
+[1m[7m%[27m[1m[0m                                                                                                                                                                        [0m[27m[24m[Jjackblake@Jacks-MacBook-Pro java % [K[?2004h[7mexit[27m[27me[27mx[27mi[27mt[?2004l
+
+Script done on Mon Apr 25 13:29:24 2022
