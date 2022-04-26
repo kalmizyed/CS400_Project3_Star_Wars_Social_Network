@@ -1,3 +1,10 @@
+// --== CS400 Project Three File Header ==--
+// Name: Kaden Almizyed
+// CSL Username: kaden
+// Email: kalmizyed@wisc.edu
+// Lecture #: 004 @4:00pm
+// Notes to Grader:
+
 import java.util.ArrayList;
 import java.util.List;
 import java.text.CharacterIterator;
@@ -36,6 +43,13 @@ public class Trie implements ITrie {
     }
 
     /**
+     * Returns whether or not the specified word is in the Trie.
+     */
+    public boolean contains(String word) {
+        return getNode(word).isWord;
+    }
+
+    /**
      * Adds a word to the trie.
      */
     @Override
@@ -55,8 +69,8 @@ public class Trie implements ITrie {
      * Returns a list of all words starting with the given prefix.
      */
     @Override
-    public List<String> getWords(String prefix) {
-        return getWordsHelper(getNode(prefix), new String());
+    public List<String> getWords(String prefix) { // Start getWords algorithm at node with last prefix letter
+        return getWordsHelper(getNode(prefix), prefix);
     }
 
     /**
@@ -100,7 +114,7 @@ class TrieNode {
      */
     public TrieNode() {
         isWord = false;
-        children = new TrieNode[28]; // [A-Z, space, -]
+        children = new TrieNode[38]; // [A-Z, space, -, 0-9]
     }
 
     /**
@@ -109,7 +123,7 @@ class TrieNode {
      */
     public TrieNode(char character) {
         isWord = false;
-        children = new TrieNode[28]; // [A-Z, space, -]
+        children = new TrieNode[38]; // [A-Z, space, -, 0-9]
         this.character = character;
     }
 
@@ -125,7 +139,7 @@ class TrieNode {
         return children[indexOfChar(c)];
     }
 
-    private int indexOfChar(char c) throws IllegalArgumentException {
+    protected static int indexOfChar(char c) throws IllegalArgumentException {
         if (c >= 'A' && c <= 'Z') {
             return (int) c - 'A'; // 0-25
         }
@@ -133,9 +147,13 @@ class TrieNode {
         else if (c == ' ') return 26;
 
         else if (c == '-') return 27;
+
+        else if (c >= '0' && c <= '9') {
+            return (int) c - '0' + 28; // 28-37
+        }
         
         else {
-            throw new IllegalArgumentException("Unknown character encountered.  Trie only accepts characters [A-Z, space, -].");
+            throw new IllegalArgumentException("Unknown character encountered.  Trie only accepts characters [A-Z, space, -, 0-9].");
         }
     }
 }
