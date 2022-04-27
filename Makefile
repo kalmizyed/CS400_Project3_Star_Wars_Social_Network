@@ -1,4 +1,23 @@
-runTests: BackendDeveloperTests.class
+# GLOBAL FUNCTIONS #
+
+run: StarWarsSocialNetworkApp.class
+	java StarWarsSocialNetworkApp
+
+StarWarsSocialNetworkApp.class: StarWarsSocialNetworkApp.java StarWarsSocialNetworkBackend.class # TODO: put your class rules here so it'll run
+	javac StarWarsSocialNetworkApp.java
+
+runTests: runBackendDeveloperTests
+
+clean:
+	rm *.class
+
+# DATA WRANGLER #
+
+# ALGORITHM ENGINEER #
+
+# BACKEND DEVELOPER #
+
+runBackendDeveloperTests: BackendDeveloperTests.class
 	java -jar junit5.jar --class-path . --select-class BackendDeveloperTests
 
 BackendDeveloperTests.class: BackendDeveloperTests.java StarWarsSocialNetworkBackend.class Trie.class ExtendedGraphPlaceholderBD.class
@@ -16,5 +35,4 @@ TrieNode.class: TrieNode.java
 ExtendedGraphPlaceholderBD.class: ExtendedGraphPlaceholderBD.java
 	javac ExtendedGraphPlaceholderBD.java
 
-clean:
-	rm *.class
+# FRONTEND DEVELOPER
