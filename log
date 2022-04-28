@@ -1,0 +1,110 @@
+Script started on 2022-04-28 03:24:02+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="115" LINES="43"]
+git status
+git log -1
+make clean
+ls
+make runTests
+exit]0;mchang43@instance-1: ~/Project3_DC_red[01;32mmchang43@instance-1[00m:[01;34m~/Project3_DC_red[00m$ git status
+On branch AlgorithmEngineer
+Your branch is up to date with 'origin/AlgorithmEngineer'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mlog[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;mchang43@instance-1: ~/Project3_DC_red[01;32mmchang43@instance-1[00m:[01;34m~/Project3_DC_red[00m$ git log -1
+[?1h=[33mcommit 04fdf50856f3f4a479af361b796201211dfb80b6[m[33m ([m[1;36mHEAD -> [m[1;32mAlgorithmEngineer[m[33m, [m[1;31morigin/AlgorithmEngineer[m[33m)[m[m
+Author: Matthew Chang <mchang43@wisc.edu>[m
+Date:   Thu Apr 28 03:22:26 2022 +0000[m
+[m
+    finished all[m
+[K[?1l>]0;mchang43@instance-1: ~/Project3_DC_red[01;32mmchang43@instance-1[00m:[01;34m~/Project3_DC_red[00m$ make clean
+rm *.class
+]0;mchang43@instance-1: ~/Project3_DC_red[01;32mmchang43@instance-1[00m:[01;34m~/Project3_DC_red[00m$ ls
+AlgorithmEngineerTests.java  GraphADT.java                       IStarWarsSocialNetworkFrontend.java  [0m[01;34mdata[0m
+ExtendedGraphADT.java        IGraphBuilder.java                  ITrie.java                           [01;31mjunit5.jar[0m
+Graph.java                   IStarWarsSocialNetworkBackend.java  Makefile                             log
+]0;mchang43@instance-1: ~/Project3_DC_red[01;32mmchang43@instance-1[00m:[01;34m~/Project3_DC_red[00m$ make runTests
+javac GraphADT.java
+javac ExtendedGraphADT.java
+javac Graph.java
+Note: Graph.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+javac -cp .:junit5.jar AlgorithmEngineerTests.java -Xlint
+java -jar junit5.jar --class-path . --scan-classpath
+yes
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Visited Array: [A, C, B, D, E, F]
+yes
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Called
+Visited Array: [A, C, B, D, E, F]
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  └─[0m [36mAlgorithmEngineerTests[0m [32m✔[0m
+[36m│     ├─[0m [34mtestBadData()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestCostAtoB()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestPathsContain()[0m [32m✔[0m
+[36m│     ├─[0m [34mtestAllShortestReturn()[0m [32m✔[0m
+[36m│     └─[0m [34mtestIterable()[0m [32m✔[0m
+[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
+
+Test run finished after 254 ms
+[         3 containers found      ]
+[         0 containers skipped    ]
+[         3 containers started    ]
+[         0 containers aborted    ]
+[         3 containers successful ]
+[         0 containers failed     ]
+[         5 tests found           ]
+[         0 tests skipped         ]
+[         5 tests started         ]
+[         0 tests aborted         ]
+[         5 tests successful      ]
+[         0 tests failed          ]
+
+]0;mchang43@instance-1: ~/Project3_DC_red[01;32mmchang43@instance-1[00m:[01;34m~/Project3_DC_red[00m$ exit
+exit
+
+Script done on 2022-04-28 03:24:10+00:00 [COMMAND_EXIT_CODE="0"]
