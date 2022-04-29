@@ -1,8 +1,8 @@
 # GLOBAL FUNCTIONS #
+run: StarWarsSocialNetworkFrontend.class
+	java --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontend
 
-run: # TODO: run Frontend
-
-runTests: runBackendDeveloperTests
+runTests: runBackendDeveloperTests runFrontendDeveloperTests
 
 clean:
 	rm *.class
@@ -48,3 +48,22 @@ ExtendedGraphPlaceholderBD.class: ExtendedGraphPlaceholderBD.java
 	javac ExtendedGraphPlaceholderBD.java
 
 # FRONTEND DEVELOPER
+
+runWithBackendPlaceholder: StarWarsSocialNetworkFrontendWithBackendPlaceholder.class
+	java --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontendWithBackendPlaceholder
+
+runFrontendDeveloperTests: FrontendDeveloperTests.class
+	java --module-path ./lib --add-modules javafx.controls -jar ./lib/junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
+
+FrontendDeveloperTests.class: FrontendDeveloperTests.java StarWarsSocialNetworkFrontendWithBackendPlaceholder.class StarWarsSocialNetworkFrontend.class
+	javac --module-path ./lib --add-modules javafx.controls  -cp .:./lib/junit5.jar FrontendDeveloperTests.java
+
+StarWarsSocialNetworkFrontend.class: StarWarsSocialNetworkFrontend.java StarWarsSocialNetworkBackend.class
+	javac --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontend.java
+
+StarWarsSocialNetworkFrontendWithBackendPlaceholder.class: 
+	javac --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontendWithBackendPlaceholder.java
+
+StarWarsSocialNetworkBackendPlaceholder.class: StarWarsSocialNetworkBackendPlaceholder.java
+	javac StarWarsSocialNetworkBackendPlaceholder.java
+
