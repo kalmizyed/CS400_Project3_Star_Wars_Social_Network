@@ -1,64 +1,0 @@
-Script started on Mon Apr 25 01:03:16 2022
-[1m[7m%[27m[1m[0m                                                                                                                                         [0m[27m[24m[J(base) joe@Josephs-MacBook-Air Project3_DC_red % [K[?2004hggit status[?2004l
-On branch DataWrangler
-Your branch is up to date with 'origin/DataWrangler'.
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	[31m.DS_Store[m
-	[31mlog[m
-
-nothing added to commit but untracked files present (use "git add" to track)
-[1m[7m%[27m[1m[0m                                                                                                                                         [0m[27m[24m[J(base) joe@Josephs-MacBook-Air Project3_DC_red % [K[?2004hggit log -1[?2004l
-[?1h=[33mcommit 483ad5f5becbf2edcda76767318ea41f0f66cb3e[m[33m ([m[1;36mHEAD -> [m[1;32mDataWrangler[m[33m, [m[1;31morigin/DataWrangler[m[33m)[m[m
-Author: Joseph Cai <joe734647@gmail.com>[m
-Date:   Mon Apr 25 01:02:30 2022 -0500[m
-[m
-    Added tests for DW[m
-[K[?1l>[1m[7m%[27m[1m[0m                                                                                                                                         [0m[27m[24m[J(base) joe@Josephs-MacBook-Air Project3_DC_red % [K[?2004hmmake clean[?2004l
-rm *.class
-rm: *.class: No such file or directory
-make: *** [clean] Error 1
-[1m[7m%[27m[1m[0m                                                                                                                                         [0m[27m[24m[J(base) joe@Josephs-MacBook-Air Project3_DC_red % [K[?2004hlls[?2004l
-DataWranglerTests.java			IGraphBuilder.java			data
-ExtendedGraphADT.java			IStarWarsSocialNetworkBackend.java	junit5.jar
-GraphADT.java				IStarWarsSocialNetworkFrontend.java	log
-GraphADTPlaceholderDW.java		ITrie.java
-GraphBuilder.java			Makefile
-[1m[7m%[27m[1m[0m                                                                                                                                         [0m[27m[24m[J(base) joe@Josephs-MacBook-Air Project3_DC_red % [K[?2004hmmake runTests[?2004l
-javac ExtendedGraphADT.java
-javac IGraphBuilder.java
-javac GraphADTPlaceholderDW.java
-javac GraphBuilder.java
-javac -cp .:junit5.jar DataWranglerTests.java -Xlint
-java -jar junit5.jar -cp . --scan-classpath -n DataWranglerTests
-
-Thanks for using JUnit! Support its development at https://junit.org/sponsoring
-
-[36m╷[0m
-[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
-[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
-[36m   └─[0m [36mDataWranglerTests[0m [32m✔[0m
-[36m      ├─[0m [34mtestGraphContainsCharacters[0m [32m✔[0m
-[36m      ├─[0m [34mtestGraphContainsEdges[0m [32m✔[0m
-[36m      ├─[0m [34mtestNumberInteractions[0m [32m✔[0m
-[36m      ├─[0m [34mtestNumberCharacters[0m [32m✔[0m
-[36m      └─[0m [34mtestGraphSizes[0m [32m✔[0m
-
-Test run finished after 154 ms
-[         3 containers found      ]
-[         0 containers skipped    ]
-[         3 containers started    ]
-[         0 containers aborted    ]
-[         3 containers successful ]
-[         0 containers failed     ]
-[         5 tests found           ]
-[         0 tests skipped         ]
-[         5 tests started         ]
-[         0 tests aborted         ]
-[         5 tests successful      ]
-[         0 tests failed          ]
-
-[1m[7m%[27m[1m[0m                                                                                                                                         [0m[27m[24m[J(base) joe@Josephs-MacBook-Air Project3_DC_red % [K[?2004heexit[?2004l
-
-Script done on Mon Apr 25 01:03:52 2022
