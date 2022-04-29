@@ -1,10 +1,6 @@
 # GLOBAL FUNCTIONS #
 
-run: StarWarsSocialNetworkApp.class
-	java StarWarsSocialNetworkApp
-
-StarWarsSocialNetworkApp.class: StarWarsSocialNetworkApp.java StarWarsSocialNetworkBackend.class # TODO: put your class rules here so it'll run
-	javac StarWarsSocialNetworkApp.java
+run: # TODO: run Frontend
 
 runTests: runBackendDeveloperTests
 
