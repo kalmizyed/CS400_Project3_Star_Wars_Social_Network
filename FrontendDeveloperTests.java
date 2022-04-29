@@ -27,8 +27,7 @@ import javafx.scene.text.Text;
  */
 public class FrontendDeveloperTests {
 
-    // TODO: replace with StarWarsSocialNetworkFrontendWithBackendPlaceholder
-    IStarWarsSocialNetworkFrontend frontend = new StarWarsSocialNetworkFrontendWithBackendPlaceholder();
+    StarWarsSocialNetworkFrontendWithBackendPlaceholder frontend = new StarWarsSocialNetworkFrontendWithBackendPlaceholder();
 
     /**
      * Run Platform.startup before any of the tests to start up JavaFX Toolkit so
