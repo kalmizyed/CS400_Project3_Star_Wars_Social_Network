@@ -17,10 +17,10 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
 
     /**
      * Creates a new Backend object.
-     * @param map the map of characters the app will use.
+     * @param graphBuilder the graphBuilder that will return the map of characters the app will use.
      */
-    public StarWarsSocialNetworkBackend(ExtendedGraphADT<String> map) {
-        this.map = map;
+    public StarWarsSocialNetworkBackend(IGraphBuilder graphBuilder) {
+        this.map = graphBuilder.getGraph();
         characters = loadCharacters();
     }
 

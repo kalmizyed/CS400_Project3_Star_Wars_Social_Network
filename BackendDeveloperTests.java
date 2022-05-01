@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -129,7 +130,7 @@ public class BackendDeveloperTests {
     }
 
     // Used for the following Backend tests
-    StarWarsSocialNetworkBackend backend = new StarWarsSocialNetworkBackend(new ExtendedGraphPlaceholderBD());
+    StarWarsSocialNetworkBackend backend = new StarWarsSocialNetworkBackend(new GraphBuilderPlaceholderBD());
 
     /**
      * Tests the backend getPathsBetween() method using a placeholder map.
@@ -189,35 +190,20 @@ public class BackendDeveloperTests {
     /* INTEGRATION TESTS */
     /*********************/
 
-    // Used for the following Backend tests
-    StarWarsSocialNetworkBackend backendIntegrated = new StarWarsSocialNetworkBackend(new ExtendedGraphPlaceholderBD());
-
-    /**
-     * Tests the backend getPathsBetween() method.
-     */
-    @Test
-    public void testBackendPathsBetweenIntegrated() {
-        List<List<String>> paths = backendIntegrated.getPathsBetween("JAR JAR BINKS", "PRINCESS LEIA");
-
-        assertEquals(2, paths.size());
-        assertEquals(4, paths.get(0).size()); // TODO make sure these paths are correct with the real data
-        assertTrue(paths.get(0).get(0).equals("JAR JAR BINKS"));
-        assertTrue(paths.get(0).get(3).equals("PRINCESS LEIA"));
-    }
-
     /**
      * Tests the backend loadCharacters() method.
      */
     @Test
     public void testBackendLoadCharactersIntegrated() {
-        Trie characters = backendIntegrated.loadCharacters(); // TODO make sure these characters are in the real data, maybe add a few more
+        StarWarsSocialNetworkBackend backendIntegrated = new StarWarsSocialNetworkBackend(new GraphBuilder());
+        Trie characters = backendIntegrated.loadCharacters();
 
-        assertTrue(characters.contains("HAN SOLO"));
-        assertTrue(characters.contains("PRINCESS LEIA"));
-        assertTrue(characters.contains("LUKE SKYWALKER"));
+        assertTrue(characters.contains("HAN"));
+        assertTrue(characters.contains("LEIA"));
+        assertTrue(characters.contains("LUKE"));
         assertTrue(characters.contains("DARTH VADER"));
-        assertTrue(characters.contains("JAR JAR BINKS"));
-        assertTrue(characters.contains("OBI WAN KENOBI"));
+        assertTrue(characters.contains("JAR JAR"));
+        assertTrue(characters.contains("OBI-WAN"));
     }
 
     /**
@@ -225,24 +211,25 @@ public class BackendDeveloperTests {
      */
     @Test
     public void testBackendGetCharactersIntegrated() {
-        List<String> characters = backendIntegrated.getCharacters(); // TODO make sure these characters are in the real data, maybe add a few more
+        StarWarsSocialNetworkBackend backendIntegrated = new StarWarsSocialNetworkBackend(new GraphBuilder());
+        List<String> characters = backendIntegrated.getCharacters();
         List<String> charactersPrefix = backendIntegrated.getCharacters("HAN");
 
         assertEquals(6, characters.size());
-        assertTrue(characters.contains("HAN SOLO"));
-        assertTrue(characters.contains("PRINCESS LEIA"));
-        assertTrue(characters.contains("LUKE SKYWALKER"));
+        assertTrue(characters.contains("HAN"));
+        assertTrue(characters.contains("LEIA"));
+        assertTrue(characters.contains("LUKE"));
         assertTrue(characters.contains("DARTH VADER"));
-        assertTrue(characters.contains("JAR JAR BINKS"));
-        assertTrue(characters.contains("OBI WAN KENOBI"));
+        assertTrue(characters.contains("JAR JAR"));
+        assertTrue(characters.contains("OBI-WAN"));
 
         assertEquals(1, charactersPrefix.size());
-        assertTrue(charactersPrefix.contains("HAN SOLO"));
-        assertFalse(charactersPrefix.contains("PRINCESS LEIA"));
-        assertFalse(charactersPrefix.contains("LUKE SKYWALKER"));
+        assertTrue(charactersPrefix.contains("HAN"));
+        assertFalse(charactersPrefix.contains("LEIA"));
+        assertFalse(charactersPrefix.contains("LUKE"));
         assertFalse(charactersPrefix.contains("DARTH VADER"));
-        assertFalse(charactersPrefix.contains("JAR JAR BINKS"));
-        assertFalse(charactersPrefix.contains("OBI WAN KENOBI"));
+        assertFalse(charactersPrefix.contains("JAR JAR"));
+        assertFalse(charactersPrefix.contains("OBI-WAN"));
     }
 
 
@@ -250,4 +237,40 @@ public class BackendDeveloperTests {
     /*********************/
     /* CODE REVIEW TESTS */
     /*********************/
+
+    GraphBuilder builder = new GraphBuilder();
+
+    /**
+     * Tests the GraphBuilder.getCharacters() method by checking
+     * that the returned list contains the following six characters.
+     * @throws IOException
+     */
+    @Test
+    public void testBuilderGetCharacters() throws IOException {
+        List<String> characters = builder.getCharacters();
+
+        assertTrue(characters.contains("HAN"));
+        assertTrue(characters.contains("LEIA"));
+        assertTrue(characters.contains("LUKE"));
+        assertTrue(characters.contains("DARTH VADER"));
+        assertTrue(characters.contains("JAR JAR"));
+        assertTrue(characters.contains("OBI-WAN"));
+    }
+
+    /**
+     * Tests the GraphBuilder.getCharacters() method by checking that
+     * the returned graph contains the following six characters.
+     * @throws IOException
+     */
+    @Test
+    public void testBuilderGetGraph() {
+        ExtendedGraphADT<String> characters = builder.getGraph();
+
+        assertTrue(characters.containsVertex("HAN"));
+        assertTrue(characters.containsVertex("LEIA"));
+        assertTrue(characters.containsVertex("LUKE"));
+        assertTrue(characters.containsVertex("DARTH VADER"));
+        assertTrue(characters.containsVertex("JAR JAR"));
+        assertTrue(characters.containsVertex("OBI-WAN"));
+    }
 }

@@ -22,9 +22,6 @@ IGraphBuilder.class: IGraphBuilder.java ExtendedGraphADT.class
 GraphADTPlaceholderDW.class: ExtendedGraphADT.class
 	javac GraphADTPlaceholderDW.java
 
-ExtendedGraphADT.class:
-	javac ExtendedGraphADT.java
-
 # ALGORITHM ENGINEER #
 
 runAlgorithmTests: AlgorithmEngineerTests.class

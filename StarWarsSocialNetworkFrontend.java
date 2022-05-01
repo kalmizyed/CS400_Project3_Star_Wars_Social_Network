@@ -22,7 +22,7 @@ import javafx.scene.paint.Color;
  */
 public class StarWarsSocialNetworkFrontend extends Application implements IStarWarsSocialNetworkFrontend {
 
-    IStarWarsSocialNetworkBackend backend = new StarWarsSocialNetworkBackend((new GraphBuilder()).getGraph());
+    IStarWarsSocialNetworkBackend backend = new StarWarsSocialNetworkBackend((new GraphBuilder()));
 
     public static void main(String args) {
         Application.launch();
