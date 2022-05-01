@@ -384,7 +384,7 @@ public class GraphADTPlaceholderDW<T> implements ExtendedGraphADT<T> {
     }
 
     @Override
-    public List<List<T>> getAllShortestPaths(String startCharacter, String endCharacter) {
+    public List<List<T>> getAllShortestPaths(T startCharacter, T endCharacter) {
         // TODO Auto-generated method stub
         return null;
     }   

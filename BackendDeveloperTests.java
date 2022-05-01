@@ -1,3 +1,11 @@
+// --== CS400 Project Three File Header ==--
+// Name: Kaden Almizyed
+// CSL Username: kaden
+// Email: kalmizyed@wisc.edu
+// Lecture #: 004 @4:00pm
+// Notes to Grader:
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -5,13 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.Test;
-
-// --== CS400 Project Three File Header ==--
-// Name: Kaden Almizyed
-// CSL Username: kaden
-// Email: kalmizyed@wisc.edu
-// Lecture #: 004 @4:00pm
-// Notes to Grader:
 
 /**
  * Tests for the Backend Developer.
@@ -182,4 +183,71 @@ public class BackendDeveloperTests {
         assertFalse(charactersPrefix.contains("JAR JAR BINKS"));
         assertFalse(charactersPrefix.contains("OBI WAN KENOBI"));
     }
+
+
+    /*********************/
+    /* INTEGRATION TESTS */
+    /*********************/
+
+    // Used for the following Backend tests
+    StarWarsSocialNetworkBackend backendIntegrated = new StarWarsSocialNetworkBackend(new ExtendedGraphPlaceholderBD());
+
+    /**
+     * Tests the backend getPathsBetween() method.
+     */
+    @Test
+    public void testBackendPathsBetweenIntegrated() {
+        List<List<String>> paths = backendIntegrated.getPathsBetween("JAR JAR BINKS", "PRINCESS LEIA");
+
+        assertEquals(2, paths.size());
+        assertEquals(4, paths.get(0).size()); // TODO make sure these paths are correct with the real data
+        assertTrue(paths.get(0).get(0).equals("JAR JAR BINKS"));
+        assertTrue(paths.get(0).get(3).equals("PRINCESS LEIA"));
+    }
+
+    /**
+     * Tests the backend loadCharacters() method.
+     */
+    @Test
+    public void testBackendLoadCharactersIntegrated() {
+        Trie characters = backendIntegrated.loadCharacters(); // TODO make sure these characters are in the real data, maybe add a few more
+
+        assertTrue(characters.contains("HAN SOLO"));
+        assertTrue(characters.contains("PRINCESS LEIA"));
+        assertTrue(characters.contains("LUKE SKYWALKER"));
+        assertTrue(characters.contains("DARTH VADER"));
+        assertTrue(characters.contains("JAR JAR BINKS"));
+        assertTrue(characters.contains("OBI WAN KENOBI"));
+    }
+
+    /**
+     * Tests the backend getCharacters() methods.
+     */
+    @Test
+    public void testBackendGetCharactersIntegrated() {
+        List<String> characters = backendIntegrated.getCharacters(); // TODO make sure these characters are in the real data, maybe add a few more
+        List<String> charactersPrefix = backendIntegrated.getCharacters("HAN");
+
+        assertEquals(6, characters.size());
+        assertTrue(characters.contains("HAN SOLO"));
+        assertTrue(characters.contains("PRINCESS LEIA"));
+        assertTrue(characters.contains("LUKE SKYWALKER"));
+        assertTrue(characters.contains("DARTH VADER"));
+        assertTrue(characters.contains("JAR JAR BINKS"));
+        assertTrue(characters.contains("OBI WAN KENOBI"));
+
+        assertEquals(1, charactersPrefix.size());
+        assertTrue(charactersPrefix.contains("HAN SOLO"));
+        assertFalse(charactersPrefix.contains("PRINCESS LEIA"));
+        assertFalse(charactersPrefix.contains("LUKE SKYWALKER"));
+        assertFalse(charactersPrefix.contains("DARTH VADER"));
+        assertFalse(charactersPrefix.contains("JAR JAR BINKS"));
+        assertFalse(charactersPrefix.contains("OBI WAN KENOBI"));
+    }
+
+
+
+    /*********************/
+    /* CODE REVIEW TESTS */
+    /*********************/
 }
