@@ -22,7 +22,7 @@ public class GraphBuilder implements IGraphBuilder{
      */
     @Override
     public ExtendedGraphADT<String> getGraph() {
-        ExtendedGraphADT<String> graph = new GraphADTPlaceholderDW<String>();
+        ExtendedGraphADT<String> graph = new Graph<String>();
         try{
             List<String> characters = getCharacters();
             List<int[]> interactions = getInteractions();
