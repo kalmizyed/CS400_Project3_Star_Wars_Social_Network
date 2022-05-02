@@ -2,7 +2,7 @@
 run: StarWarsSocialNetworkFrontend.class
 	java --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontend
 
-runTests: runBackendDeveloperTests runFrontendDeveloperTests
+runTests: runBackendDeveloperTests runFrontendDeveloperTests runDataWranglerTests
 
 clean:
 	rm *.class
