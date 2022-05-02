@@ -5,6 +5,7 @@
 // Lecture #: 004 @4:00pm
 // Notes to Grader:
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,7 +22,11 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
      */
     public StarWarsSocialNetworkBackend(IGraphBuilder graphBuilder) {
         this.map = graphBuilder.getGraph();
-        characters = loadCharacters();
+        try {
+            characters = loadCharacters();
+        } catch (IllegalArgumentException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -51,11 +56,13 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
     /**
      * Iterates through the map and adds all character names to a trie for quick access.
      * @return
+     * @throws IOException
+     * @throws IllegalArgumentException
      */
-    protected Trie loadCharacters() {
+    protected Trie loadCharacters() throws IllegalArgumentException, IOException {
         Trie trie = new Trie();
 
-        for (String character : map) {
+        for (String character : new GraphBuilder().getCharacters()) {
             trie.add(character);
         }
 
