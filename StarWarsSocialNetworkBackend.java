@@ -5,6 +5,7 @@
 // Lecture #: 004 @4:00pm
 // Notes to Grader:
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -52,11 +53,15 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
      * Iterates through the map and adds all character names to a trie for quick access.
      * @return a trie containing all character names
      */
-    protected Trie loadCharacters() {
+    protected Trie loadCharacters(){
         Trie trie = new Trie();
-
-        for (String character : map) {
-            trie.add(character);
+        
+        try {
+            for (String character : new GraphBuilder().getCharacters()) {
+                trie.add(character);
+            }
+        } catch (IllegalArgumentException | IOException e) {
+            e.printStackTrace();
         }
 
         return trie;
