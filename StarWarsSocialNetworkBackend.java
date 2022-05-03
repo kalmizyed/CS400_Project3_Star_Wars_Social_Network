@@ -22,11 +22,7 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
      */
     public StarWarsSocialNetworkBackend(IGraphBuilder graphBuilder) {
         this.map = graphBuilder.getGraph();
-        try {
-            characters = loadCharacters();
-        } catch (IllegalArgumentException | IOException e) {
-            e.printStackTrace();
-        }
+        characters = loadCharacters();
     }
 
     /**
@@ -56,14 +52,16 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
     /**
      * Iterates through the map and adds all character names to a trie for quick access.
      * @return
-     * @throws IOException
-     * @throws IllegalArgumentException
      */
-    protected Trie loadCharacters() throws IllegalArgumentException, IOException {
+    protected Trie loadCharacters(){
         Trie trie = new Trie();
-
-        for (String character : new GraphBuilder().getCharacters()) {
-            trie.add(character);
+        
+        try {
+            for (String character : new GraphBuilder().getCharacters()) {
+                trie.add(character);
+            }
+        } catch (IllegalArgumentException | IOException e) {
+            e.printStackTrace();
         }
 
         return trie;
