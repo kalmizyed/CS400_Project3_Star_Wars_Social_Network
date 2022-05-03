@@ -50,7 +50,7 @@ public class StarWarsSocialNetworkBackend implements IStarWarsSocialNetworkBacke
 
     /**
      * Iterates through the map and adds all character names to a trie for quick access.
-     * @return
+     * @return a trie containing all character names
      */
     protected Trie loadCharacters() {
         Trie trie = new Trie();
