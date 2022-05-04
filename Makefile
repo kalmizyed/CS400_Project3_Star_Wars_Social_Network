@@ -1,6 +1,6 @@
 # GLOBAL FUNCTIONS #
 run: StarWarsSocialNetworkFrontend.class
-	java --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontend
+	java --module-path ./javafx --add-modules javafx.controls StarWarsSocialNetworkFrontend
 
 runTests: runBackendDeveloperTests runFrontendDeveloperTests runDataWranglerTests
 
@@ -62,19 +62,19 @@ ExtendedGraphPlaceholderBD.class: ExtendedGraphPlaceholderBD.java
 # FRONTEND DEVELOPER
 
 runWithBackendPlaceholder: StarWarsSocialNetworkFrontendWithBackendPlaceholder.class
-	java --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontendWithBackendPlaceholder
+	java --module-path ./javafx --add-modules javafx.controls StarWarsSocialNetworkFrontendWithBackendPlaceholder
 
 runFrontendDeveloperTests: FrontendDeveloperTests.class
-	java --module-path ./lib --add-modules javafx.controls -jar ./lib/junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
+	java --module-path ./javafx --add-modules javafx.controls -jar junit5.jar -cp . --scan-classpath -n FrontendDeveloperTests
 
 FrontendDeveloperTests.class: FrontendDeveloperTests.java StarWarsSocialNetworkFrontendWithBackendPlaceholder.class StarWarsSocialNetworkFrontend.class
-	javac --module-path ./lib --add-modules javafx.controls  -cp .:./lib/junit5.jar FrontendDeveloperTests.java
+	javac --module-path ./javafx --add-modules javafx.controls  -cp .:./junit5.jar FrontendDeveloperTests.java
 
 StarWarsSocialNetworkFrontend.class: StarWarsSocialNetworkFrontend.java StarWarsSocialNetworkBackend.class
-	javac --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontend.java
+	javac --module-path ./javafx --add-modules javafx.controls StarWarsSocialNetworkFrontend.java
 
 StarWarsSocialNetworkFrontendWithBackendPlaceholder.class: 
-	javac --module-path ./lib --add-modules javafx.controls StarWarsSocialNetworkFrontendWithBackendPlaceholder.java
+	javac --module-path ./javafx --add-modules javafx.controls StarWarsSocialNetworkFrontendWithBackendPlaceholder.java
 
 StarWarsSocialNetworkBackendPlaceholder.class: StarWarsSocialNetworkBackendPlaceholder.java
 	javac StarWarsSocialNetworkBackendPlaceholder.java
