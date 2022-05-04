@@ -126,7 +126,8 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
         // otherwise add new edge to sourceVertex
         sourceVertex.edgesLeaving.add(new Edge(targetVertex,weight));
         return true;
-    }  
+    }    
+    
     /**
      * Remove an edge from the graph.
      * 
@@ -203,8 +204,7 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
             if(e.target == targetVertex)
                 return e.weight;
         throw new NoSuchElementException("No directed edge found between these vertices");
-    }
-    
+    }    
     /**
      * Return the number of edges in the graph.
      * 
@@ -261,6 +261,7 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
             this.dataSequence.add(start.data);
             this.end = start;
         }
+
         /**
          * This extension constructor makes a copy of the path passed into it as an argument
          * without affecting the original path object (copyPath). The path is then extended
@@ -377,6 +378,7 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
     public int getPathCost(T start, T end) {
         return dijkstrasShortestPath(start, end).distance;
     }   
+    
     /**
      * Gets all the shortest paths between start and end
      */
@@ -396,86 +398,87 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
       
       
       //list of shortest paths
-      List<Path> nodePath = new ArrayList<Path>();
+      List<Path> pathsList = new ArrayList<Path>();
       
       //pq of paths
       PriorityQueue<Path> pathsQueue = new PriorityQueue<Path>(vertices.size());
       
+      //add first path to pq
       Path currentPath = new Path(startNode);
       pathsQueue.add(currentPath);
+      
       
       while (!pathsQueue.isEmpty()) {
         currentPath = pathsQueue.remove();
         
-        //if path to new node is null
-          nodePath.add(currentPath); 
-          if (currentPath.end.equals(endNode))
-            if (currentPath.distance <= shortestDistance && 
-            !shortestPaths.contains(currentPath.dataSequence)) {
-              shortestDistance = currentPath.distance;
-              shortestPaths.add(currentPath.dataSequence);
-              //removeLongerPaths(shortestPaths);
-            }
-          for(Edge edge : currentPath.end.edgesLeaving) {
-            pathsQueue.add(new Path(currentPath, edge));
+        pathsList.add(currentPath); 
+        
+        //if current ends with endNode, has the correct distance, and has not been added already
+        if (currentPath.end.equals(endNode) && currentPath.distance <= shortestDistance) {
+          shortestDistance = currentPath.distance;
+          shortestPaths.add(currentPath.dataSequence);
+        }
+        
+        for(Edge edge : currentPath.end.edgesLeaving) {
+          boolean nodeVisited = false;
+          
+          //check that the target edge hasn't already been visited, preventing infinite loop
+          for (Path path : pathsList) {
+            if (path.end.equals(edge.target)) nodeVisited = true;
           }
+          
+          if (nodeVisited == false)
+            pathsQueue.add(new Path(currentPath, edge));
+        }
       }
             
       return shortestPaths;
     }
     
-
     /**
-     * Helper method to getAllShortestPaths, once a shorter path is added to the list, 
-     * removes all of the other paths that are longer than the shorter path
-     * @param pathList
+     * DFSIterator class creates an iterator for the graph using DFS
+     * @author matthewchang
+     * @param <T> Generic type
      */
-    /*
-    public void removeLongerPaths(List<List<T>> pathList) {
-      int distance = Integer.MAX_VALUE;
-      for (List<T> list : pathList) {
-        if (list.size() <= distance) {
-          distance = list.size();
-        }
-      }
-      for (List<T> list : pathList) {
-        if (list.size() > distance) {
-          pathList.remove(list);
-        }
-      }
-    }
-    */
-    
     public class DFSIterator<T> implements Iterator<T> {
 
-      private Hashtable<T,Vertex> g;
       private ArrayList<T> visited;
-      private Stack<T> unvisited;
       private int index = 0;
       
-      public DFSIterator(Hashtable<T, Vertex> g, T startNode) {
-        //DFSArray = new String[g.getVertexCount()];
+      /**
+       * Constructs a DFSIterator object w/ the first item in the graph as its starting node
+       */
+      public DFSIterator() {
+        
+        //get first node in hashtable
+        Object[] keys = vertices.keySet().toArray();
+        T startNode = (T) keys[0];
+        
         visited = new ArrayList<>();
-        unvisited = new Stack<>();
         if (startNode != null) {
           visited.add(startNode);
-          this.g = g;
         }
+        
         DFS(startNode);
         System.out.println("Visited Array: " + visited);
       }
       
-   // DFS algorithm
+      /**
+       * DFS Algorithm
+       * @param data the current node
+       */
       void DFS(T data) {
+        
         if (!visited.contains(data))
           visited.add(data);
+        
         Vertex curr = vertices.get(data);
+        
         for (Edge edge : curr.edgesLeaving)
           if (!visited.contains(edge.target)) {
-            System.out.println("Called");
             DFS((T) edge.target.data);    
           }
-        }
+      }
       
       
       @Override
@@ -495,15 +498,12 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
       }
       
     }
-    
 
+    /**
+     * returns a DFSIterator object for a graph
+     */
     @Override
     public Iterator<T> iterator() {
-      return null;
-    }
-    
-    public Iterator<T> iterator(Hashtable<T,Vertex> h, T startingVertex){
-      System.out.println("yes");
-      return new DFSIterator<T>(h, startingVertex);
+      return new DFSIterator<T>();
     }
 }
