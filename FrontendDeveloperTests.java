@@ -251,7 +251,9 @@ public class FrontendDeveloperTests {
 
     /**
      * Tests to make sure the Graph is iterable using its default iterator, i.e.
-     * using an enhance for loop or forEach TEST FAILS AS OF 5/2/22
+     * using an enhance for loop or forEach TEST FAILS AS OF 5/2/22 because iterator
+     * returns null: FIXED,
+     * TEST FAILS AS OF 5/4/22 because iterator throws StackOverflowError
      */
     @Test
     public void testGraphDefaultIterator() {
