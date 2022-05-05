@@ -204,7 +204,8 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
             if(e.target == targetVertex)
                 return e.weight;
         throw new NoSuchElementException("No directed edge found between these vertices");
-    }    
+    }
+    
     /**
      * Return the number of edges in the graph.
      * 
@@ -381,6 +382,8 @@ public class Graph<T> implements GraphADT<T>, ExtendedGraphADT<T> {
     
     /**
      * Gets all the shortest paths between start and end
+     * @param start the start node
+     * @param end the end node
      */
     public List<List<T>> getAllShortestPaths(T start, T end){
       //check if the nodes exist

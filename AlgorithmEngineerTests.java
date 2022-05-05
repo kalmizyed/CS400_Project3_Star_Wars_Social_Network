@@ -1,3 +1,11 @@
+// --== CS400 File Header Information ==--
+// Name: Matthew Chang
+// Email: mchang43@wisc.edu
+// Team: DC
+// TA: April
+// Lecturer: Florian Heimerl
+// Notes to Grader: <optional extra notes>
+
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,10 +16,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * AlgorithmEngineerTests class tests the implemented 
+ * Graph with the testAllShortestPaths method
+ * @author matthewchang
+ *
+ */
 class AlgorithmEngineerTests {
 
   private Graph<String> graph;
   
+  /**
+   * Creates the graph for test methods
+   */
   @BeforeEach
   void makeGraph() {
     graph = new Graph<String>();
@@ -35,18 +52,38 @@ class AlgorithmEngineerTests {
     graph.insertEdge("C", "D", 1);
     graph.insertEdge("D", "E", 1);
     graph.insertEdge("E", "F", 1);
+    
+    
+    /**
+     * Graph Representation
+     * 
+     *   -> C ->
+     * A -> D -> B
+     *   -> E ->
+     *   -> F ->
+     * 
+     */
   }
   
+  /**
+   * Tests getAllShortestPaths returns a list
+   */
   @Test
   void testAllShortestReturn() {
     assertTrue(graph.getAllShortestPaths("A", "B") instanceof List<?>);
   }
   
+  /**
+   * Tests getPathCost method
+   */
   @Test
   void testCostAtoB() {
     assertTrue(graph.getPathCost("A", "B") == 2);
   }
   
+  /**
+   * Tests that all shortest paths are returned
+   */
   @Test
   void testPathsContain() {
     List<List<String>> pathsList = graph.getAllShortestPaths("A", "B");
@@ -56,6 +93,9 @@ class AlgorithmEngineerTests {
     assertTrue(pathsList.toString().contains("[A, F, B]"));
   }
   
+  /**
+   * Tests invalid paths/nodes
+   */
   @Test
   void testBadData() {
     try {
@@ -79,16 +119,21 @@ class AlgorithmEngineerTests {
     }
   }
   
+  /**
+   * Tests the overriden iterator
+   */
   @Test
   void testIterable() {
-    assertTrue(graph.iterator(graph.vertices, "A") instanceof Iterator<?>);
+    assertTrue(graph.iterator() instanceof Iterator<?>);
     
     ArrayList<String> DFSArray = new ArrayList<>();
-    for (Iterator<String> it = graph.iterator(graph.vertices, "A"); it.hasNext(); ) {
+    for (Iterator<String> it = graph.iterator(); it.hasNext(); ) {
       DFSArray.add(it.next());
     }
     
     assertTrue(DFSArray.toString().equals("[A, C, B, D, E, F]"));
+    
   }
+  
 }
 
